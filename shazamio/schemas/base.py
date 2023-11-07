@@ -3,10 +3,8 @@ from typing import Optional
 from typing import TypeVar
 
 from pydantic import BaseModel
-from pydantic.generics import GenericModel
 
-
-T = TypeVar("T", bound=BaseModel)
+T = TypeVar("T")
 
 
 class BaseIdTypeHref(BaseModel):
@@ -15,11 +13,11 @@ class BaseIdTypeHref(BaseModel):
     href: str
 
 
-class BaseDataModel(GenericModel, BaseModel, Generic[T]):
+class BaseDataModel(BaseModel, Generic[T]):
     attributes: T
 
 
-class BaseHrefNextData(GenericModel, Generic[T]):
+class BaseHrefNextData(BaseModel, Generic[T]):
     href: str
     next: Optional[str] = None
     data: T
